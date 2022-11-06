@@ -16,7 +16,7 @@ export default function Home() {
       </Head>
       <main className={styles.main}>
         <ParticlesContainer />
-        <Typography variant='h1'>Welcome to my website!</Typography>
+        <Typography variant='h1'>under construction...</Typography>
         {/* <Box
           sx={{
             display: 'flex',
