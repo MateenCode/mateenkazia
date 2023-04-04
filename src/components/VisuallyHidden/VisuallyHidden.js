@@ -4,7 +4,14 @@ import styles from './VisuallyHidden.module.css';
 
 export const VisuallyHidden = forwardRef(
   (
-    { className, showOnFocus, as: Component = 'span', children, visible, ...rest },
+    {
+      className,
+      showOnFocus,
+      as: Component = 'span',
+      children,
+      visible,
+      ...rest
+    },
     ref
   ) => {
     return (
@@ -20,3 +27,5 @@ export const VisuallyHidden = forwardRef(
     );
   }
 );
+
+VisuallyHidden.displayName = 'VisuallyHidden';

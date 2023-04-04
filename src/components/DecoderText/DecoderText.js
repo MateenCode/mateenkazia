@@ -26,7 +26,7 @@ const glyphs = [
 
 const CharType = {
   Glyph: 'glyph',
-  Value: 'value',
+  Value: 'value'
 };
 
 function shuffle(content, output, position) {
@@ -57,14 +57,14 @@ export const DecoderText = memo(
       let animation;
 
       const renderOutput = () => {
-        const characterMap = output.current.map(item => {
+        const characterMap = output.current.map((item) => {
           return `<span class="${styles[item.type]}">${item.value}</span>`;
         });
 
         containerInstance.innerHTML = characterMap.join('');
       };
 
-      const unsubscribeSpring = decoderSpring.onChange(value => {
+      const unsubscribeSpring = decoderSpring.onChange((value) => {
         output.current = shuffle(content, output.current, value);
         renderOutput();
       });
@@ -81,7 +81,7 @@ export const DecoderText = memo(
       if (reduceMotion) {
         output.current = content.map((value, index) => ({
           type: CharType.Value,
-          value: content[index],
+          value: content[index]
         }));
         renderOutput();
       }
@@ -99,3 +99,5 @@ export const DecoderText = memo(
     );
   }
 );
+
+DecoderText.displayName = 'DecoderText';

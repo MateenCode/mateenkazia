@@ -1,38 +1,38 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://hamishw.com/</loc>
+    <loc>undefined/</loc>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://hamishw.com/articles/</loc>
+    <loc>undefined/articles/</loc>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://hamishw.com/contact/</loc>
+    <loc>undefined/contact/</loc>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://hamishw.com/uses/</loc>
+    <loc>undefined/uses/</loc>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://hamishw.com/projects/slice/</loc>
+    <loc>undefined/projects/slice/</loc>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://hamishw.com/projects/smart-sparrow/</loc>
+    <loc>undefined/projects/smart-sparrow/</loc>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://hamishw.com/projects/volkihar-knight/</loc>
+    <loc>undefined/projects/volkihar-knight/</loc>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://hamishw.com/articles/hello-world</loc>
+    <loc>undefined/articles/hello-world</loc>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://hamishw.com/articles/modern-styling-in-react</loc>
+    <loc>undefined/articles/modern-styling-in-react</loc>
     <changefreq>monthly</changefreq>
   </url>
 </urlset>

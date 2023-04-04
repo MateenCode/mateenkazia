@@ -21,7 +21,7 @@ export const Button = forwardRef(({ href, ...rest }, ref) => {
     </RouterLink>
   );
 });
-
+Button.displayName = 'Button';
 const ButtonContent = forwardRef(
   (
     {
@@ -79,7 +79,7 @@ const ButtonContent = forwardRef(
           />
         )}
         <Transition unmount in={loading}>
-          {visible => (
+          {(visible) => (
             <Loader
               className={styles.loader}
               size={32}
@@ -92,3 +92,4 @@ const ButtonContent = forwardRef(
     );
   }
 );
+ButtonContent.displayName = 'ButtonContent';

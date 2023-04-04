@@ -22,6 +22,7 @@ export const Link = forwardRef(({ href, ...rest }, ref) => {
     </RouterLink>
   );
 });
+Link.displayName = 'Link';
 
 export const LinkContent = forwardRef(
   ({ rel, target, children, secondary, className, href, ...rest }, ref) => {
@@ -44,3 +45,4 @@ export const LinkContent = forwardRef(
     );
   }
 );
+LinkContent.displayName = 'LinkContent';

@@ -18,19 +18,19 @@ export function ProjectHeader({
   linkLabel = 'Visit website',
   url,
   roles,
-  className,
+  className
 }) {
   return (
-    <Section className={classes(styles.header, className)} as="section">
+    <Section className={classes(styles.header, className)} as='section'>
       <div
         className={styles.headerContent}
         style={cssProps({ initDelay: numToMs(initDelay) })}
       >
         <div className={styles.details}>
-          <Heading className={styles.title} level={2} as="h1">
+          <Heading className={styles.title} level={2} as='h1'>
             {title}
           </Heading>
-          <Text className={styles.description} size="xl" as="p">
+          <Text className={styles.description} size='xl' as='p'>
             {description}
           </Text>
           {!!url && (
@@ -38,7 +38,7 @@ export function ProjectHeader({
               secondary
               iconHoverShift
               className={styles.linkButton}
-              icon="chevronRight"
+              icon='chevronRight'
               href={url}
             >
               {linkLabel}
@@ -50,7 +50,9 @@ export function ProjectHeader({
             {roles?.map((role, index) => (
               <li
                 className={styles.metaItem}
-                style={cssProps({ delay: numToMs(initDelay + 300 + index * 140) })}
+                style={cssProps({
+                  delay: numToMs(initDelay + 300 + index * 140)
+                })}
                 key={role}
               >
                 <Text secondary>{role}</Text>
@@ -102,26 +104,30 @@ export const ProjectSection = forwardRef(
     </section>
   )
 );
+ProjectSection.displayName = 'ProjectSection';
 
 export const ProjectBackground = ({ opacity = 0.7, className, ...rest }) => {
   const imageRef = useRef();
 
-  useParallax(0.6, value => {
+  useParallax(0.6, (value) => {
     if (!imageRef.current) return;
     imageRef.current.style.setProperty('--offset', `${value}px`);
   });
 
   return (
     <Transition in timeout={msToNum(tokens.base.durationM)}>
-      {visible => (
+      {(visible) => (
         <div
           className={classes(styles.backgroundImage, className)}
           data-visible={visible}
         >
           <div className={styles.backgroundImageElement} ref={imageRef}>
-            <Image alt="" role="presentation" {...rest} />
+            <Image alt='' role='presentation' {...rest} />
           </div>
-          <div className={styles.backgroundScrim} style={cssProps({ opacity })} />
+          <div
+            className={styles.backgroundScrim}
+            style={cssProps({ opacity })}
+          />
         </div>
       )}
     </Transition>
@@ -142,18 +148,28 @@ export const ProjectSectionContent = ({ className, width = 'l', ...rest }) => (
   />
 );
 
-export const ProjectSectionHeading = ({ className, level = 3, as = 'h2', ...rest }) => (
+export const ProjectSectionHeading = ({
+  className,
+  level = 3,
+  as = 'h2',
+  ...rest
+}) => (
   <Heading
     className={classes(styles.sectionHeading, className)}
     as={as}
     level={level}
-    align="auto"
+    align='auto'
     {...rest}
   />
 );
 
 export const ProjectSectionText = ({ className, ...rest }) => (
-  <Text className={classes(styles.sectionText, className)} size="l" as="p" {...rest} />
+  <Text
+    className={classes(styles.sectionText, className)}
+    size='l'
+    as='p'
+    {...rest}
+  />
 );
 
 export const ProjectTextRow = ({

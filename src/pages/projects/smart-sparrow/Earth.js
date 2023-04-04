@@ -20,7 +20,7 @@ import {
   useContext,
   useEffect,
   useRef,
-  useState,
+  useState
 } from 'react';
 import { HDRCubeTextureLoader, OrbitControls } from 'three-stdlib';
 import {
@@ -38,7 +38,7 @@ import {
   Vector2,
   Vector3,
   WebGLRenderer,
-  sRGBEncoding,
+  sRGBEncoding
 } from 'three';
 import { LinearFilter } from 'three';
 import { EquirectangularReflectionMapping } from 'three';
@@ -50,7 +50,7 @@ import {
   getChild,
   modelLoader,
   removeLights,
-  textureLoader,
+  textureLoader
 } from 'utils/three';
 import { throttle } from 'utils/throttle';
 import styles from './Earth.module.css';
@@ -60,18 +60,18 @@ const nullTarget = { x: 0, y: 0, z: 2 };
 const interpolatePosition = (value, nextValue, percent) =>
   value + percent * (nextValue - value);
 
-const positionToString = value =>
+const positionToString = (value) =>
   Object.keys(value)
-    .map(key => parseFloat(Math.round(value[key] * 100) / 100).toFixed(2))
+    .map((key) => parseFloat(Math.round(value[key] * 100) / 100).toFixed(2))
     .join(', ');
 
-const getPositionValues = section => {
+const getPositionValues = (section) => {
   if (!section || !section.camera) return nullTarget;
 
   return {
     x: section.camera[0],
     y: section.camera[1],
-    z: section.camera[2],
+    z: section.camera[2]
   };
 };
 
@@ -90,7 +90,7 @@ const cameraSpringConfig = {
   damping: 40,
   mass: 2,
   restSpeed: 0.001,
-  restDelta: 0.001,
+  restDelta: 0.001
 };
 
 const chunkSpringConfig = {
@@ -98,12 +98,12 @@ const chunkSpringConfig = {
   damping: 30,
   mass: 2,
   restSpeed: 0.001,
-  restDelta: 0.001,
+  restDelta: 0.001
 };
 
 const opacitySpringConfig = {
   stiffness: 40,
-  damping: 30,
+  damping: 30
 };
 
 const EarthContext = createContext({});
@@ -114,7 +114,7 @@ export const Earth = ({
   hideMeshes = [],
   labels = [],
   className,
-  children,
+  children
 }) => {
   const [loaded, setLoaded] = useState(false);
   const [grabbing, setGrabbing] = useState(false);
@@ -164,13 +164,15 @@ export const Earth = ({
     renderer.current.render(scene.current, camera.current);
 
     // Render labels
-    labelElements.current.forEach(label => {
+    labelElements.current.forEach((label) => {
       const { element, position, sprite } = label;
       const vector = new Vector3(...position);
       const meshDistance = camera.current.position.distanceTo(
         sceneModel.current.position
       );
-      const spriteDistance = camera.current.position.distanceTo(sprite.position);
+      const spriteDistance = camera.current.position.distanceTo(
+        sprite.position
+      );
       const spriteBehindObject = spriteDistance > meshDistance;
 
       vector.project(camera.current);
@@ -196,14 +198,19 @@ export const Earth = ({
       antialias: false,
       alpha: true,
       powerPreference: 'high-performance',
-      failIfMajorPerformanceCaveat: true,
+      failIfMajorPerformanceCaveat: true
     });
     renderer.current.setPixelRatio(1);
     renderer.current.outputEncoding = sRGBEncoding;
     renderer.current.physicallyCorrectLights = true;
     renderer.current.toneMapping = ACESFilmicToneMapping;
 
-    camera.current = new PerspectiveCamera(54, innerWidth / innerHeight, 0.1, 100);
+    camera.current = new PerspectiveCamera(
+      54,
+      innerWidth / innerHeight,
+      0.1,
+      100
+    );
     camera.current.position.x = initCameraPosition.current.x;
     camera.current.position.y = initCameraPosition.current.y;
     camera.current.position.z = initCameraPosition.current.z;
@@ -221,7 +228,7 @@ export const Earth = ({
     const dirLight = new DirectionalLight(0xffffff, 1.5);
     dirLight.position.set(3, 0, 1);
     const lights = [ambientLight, dirLight];
-    lights.forEach(light => scene.current.add(light));
+    lights.forEach((light) => scene.current.add(light));
 
     controls.current = new OrbitControls(camera.current, canvas.current);
     controls.current.enableZoom = false;
@@ -274,13 +281,13 @@ export const Earth = ({
       camera.current.position[axis] = value;
     };
 
-    const unsubscribeCameraX = cameraXSpring.onChange(value =>
+    const unsubscribeCameraX = cameraXSpring.onChange((value) =>
       handleCameraChange('x', value)
     );
-    const unsubscribeCameraY = cameraYSpring.onChange(value =>
+    const unsubscribeCameraY = cameraYSpring.onChange((value) =>
       handleCameraChange('y', value)
     );
-    const unsubscribeCameraZ = cameraZSpring.onChange(value =>
+    const unsubscribeCameraZ = cameraZSpring.onChange((value) =>
       handleCameraChange('z', value)
     );
 
@@ -288,17 +295,17 @@ export const Earth = ({
       chunk.position[axis] = value;
     };
 
-    const unsubscribeChunkX = chunkXSpring.onChange(value =>
+    const unsubscribeChunkX = chunkXSpring.onChange((value) =>
       handleChunkChange('x', value)
     );
-    const unsubscribeChunkY = chunkYSpring.onChange(value =>
+    const unsubscribeChunkY = chunkYSpring.onChange((value) =>
       handleChunkChange('y', value)
     );
-    const unsubscribeChunkZ = chunkZSpring.onChange(value =>
+    const unsubscribeChunkZ = chunkZSpring.onChange((value) =>
       handleChunkChange('z', value)
     );
 
-    const unsubscribeOpacity = opacitySpring.onChange(value => {
+    const unsubscribeOpacity = opacitySpring.onChange((value) => {
       atmosphere.material.opacity = value;
     });
 
@@ -319,7 +326,7 @@ export const Earth = ({
     chunkYSpring,
     chunkZSpring,
     loaded,
-    opacitySpring,
+    opacitySpring
   ]);
 
   useEffect(() => {
@@ -343,7 +350,7 @@ export const Earth = ({
       mixer.current = new AnimationMixer(sceneModel.current);
       mixer.current.timeScale = 0.1;
 
-      sceneModel.current.traverse(async child => {
+      sceneModel.current.traverse(async (child) => {
         const { material, name } = child;
 
         if (name === 'Atmosphere') {
@@ -365,7 +372,14 @@ export const Earth = ({
     };
 
     const loadEnv = async () => {
-      const hdrTexture = await hdrLoader.loadAsync([mwnx, mwny, mwnz, mwpx, mwpy, mwpz]);
+      const hdrTexture = await hdrLoader.loadAsync([
+        mwnx,
+        mwny,
+        mwnz,
+        mwpx,
+        mwpy,
+        mwpz
+      ]);
 
       hdrTexture.magFilter = LinearFilter;
       envMap.current = pmremGenerator.fromCubemap(hdrTexture);
@@ -426,7 +440,7 @@ export const Earth = ({
   useEffect(() => {
     if (loaded) {
       labelContainer.current.innerHTML = '';
-      labelElements.current = labels.map(label => {
+      labelElements.current = labels.map((label) => {
         const element = document.createElement('div');
         element.classList.add(styles.label);
         element.dataset.hidden = true;
@@ -451,7 +465,7 @@ export const Earth = ({
     const currentCanvas = canvas.current;
 
     // Log readouts for dev in console
-    const handleMouseUp = event => {
+    const handleMouseUp = (event) => {
       const { innerWidth, innerHeight } = window;
       // Set a camera position property to help with defining camera angles
       const cameraPosition = positionToString(camera.current.position);
@@ -463,7 +477,10 @@ export const Earth = ({
         -(event.clientY / innerHeight) * 2 + 1
       );
       raycaster.current.setFromCamera(mouse.current, camera.current);
-      const intersects = raycaster.current.intersectObjects(scene.current.children, true);
+      const intersects = raycaster.current.intersectObjects(
+        scene.current.children,
+        true
+      );
 
       if (intersects.length > 0) {
         const clickPosition = positionToString(intersects[0].point);
@@ -489,10 +506,10 @@ export const Earth = ({
     const currentScrollY = window.scrollY - offsetTop;
     let prevTarget;
 
-    const updateMeshes = index => {
+    const updateMeshes = (index) => {
       const visibleMeshes = sectionRefs.current[index].meshes;
 
-      sceneModel.current.traverse(child => {
+      sceneModel.current.traverse((child) => {
         const { name } = child;
         const chunk = getChild('Chunk', sceneModel.current);
         const isVisible = visibleMeshes?.includes(name);
@@ -542,20 +559,24 @@ export const Earth = ({
       });
     };
 
-    const updateAnimation = index => {
+    const updateAnimation = (index) => {
       const sectionAnimations = sectionRefs.current[index].animations;
 
       if (reduceMotion) return;
 
       animations.current.forEach((clip, index) => {
-        if (!sectionAnimations.find(section => section.includes(index.toString()))) {
+        if (
+          !sectionAnimations.find((section) =>
+            section.includes(index.toString())
+          )
+        ) {
           const animation = mixer.current.clipAction(clip);
           animation.reset().stop();
         }
       });
 
       if (animations.current.length && sectionRefs.current[index].animations) {
-        sectionAnimations.forEach(animItem => {
+        sectionAnimations.forEach((animItem) => {
           const values = animItem.split(':');
           const clip = animations.current[Number(values[0])];
           const animation = mixer.current.clipAction(clip);
@@ -569,8 +590,8 @@ export const Earth = ({
       }
     };
 
-    const updateLabels = index => {
-      labelElements.current.forEach(label => {
+    const updateLabels = (index) => {
+      labelElements.current.forEach((label) => {
         if (label.hidden) {
           label.element.dataset.hidden = true;
           label.element.setAttribute('aria-hidden', true);
@@ -579,9 +600,11 @@ export const Earth = ({
 
       const sectionLabels = sectionRefs.current[index].labels;
 
-      sectionLabels.forEach(label => {
-        const matches = labelElements.current.filter(item => item.text === label);
-        matches.forEach(match => {
+      sectionLabels.forEach((label) => {
+        const matches = labelElements.current.filter(
+          (item) => item.text === label
+        );
+        matches.forEach((match) => {
           match.element.dataset.hidden = false;
           match.element.setAttribute('aria-hidden', false);
         });
@@ -601,11 +624,27 @@ export const Earth = ({
         (currentScrollY - innerHeight * currentSectionIndex) / innerHeight;
 
       const scrollPercent = clamp(sectionScrolled, 0, 1);
-      const currentX = interpolatePosition(currentTarget.x, nextTarget.x, scrollPercent);
-      const currentY = interpolatePosition(currentTarget.y, nextTarget.y, scrollPercent);
-      const currentZ = interpolatePosition(currentTarget.z, nextTarget.z, scrollPercent);
+      const currentX = interpolatePosition(
+        currentTarget.x,
+        nextTarget.x,
+        scrollPercent
+      );
+      const currentY = interpolatePosition(
+        currentTarget.y,
+        nextTarget.y,
+        scrollPercent
+      );
+      const currentZ = interpolatePosition(
+        currentTarget.z,
+        nextTarget.z,
+        scrollPercent
+      );
 
-      if (prevTarget !== currentTarget && sectionRefs.current.length && currentSection) {
+      if (
+        prevTarget !== currentTarget &&
+        sectionRefs.current.length &&
+        currentSection
+      ) {
         updateMeshes(currentSectionIndex);
         updateAnimation(currentSectionIndex);
         updateLabels(currentSectionIndex);
@@ -636,7 +675,7 @@ export const Earth = ({
     grabbing,
     hideMeshes,
     opacitySpring,
-    reduceMotion,
+    reduceMotion
   ]);
 
   useEffect(() => {
@@ -651,12 +690,14 @@ export const Earth = ({
     };
   }, [handleScroll, inViewport, loaded, opacitySpring]);
 
-  const registerSection = useCallback(section => {
+  const registerSection = useCallback((section) => {
     sectionRefs.current = [...sectionRefs.current, section];
   }, []);
 
-  const unregisterSection = useCallback(section => {
-    sectionRefs.current = sectionRefs.current.filter(item => item !== section);
+  const unregisterSection = useCallback((section) => {
+    sectionRefs.current = sectionRefs.current.filter(
+      (item) => item !== section
+    );
   }, []);
 
   return (
@@ -669,7 +710,11 @@ export const Earth = ({
             data-grabbing={grabbing}
             ref={canvas}
           />
-          <div className={styles.labels} aria-live="polite" ref={labelContainer} />
+          <div
+            className={styles.labels}
+            aria-live='polite'
+            ref={labelContainer}
+          />
           <div className={styles.vignette} />
         </div>
         <div className={styles.sections}>{children}</div>
@@ -678,7 +723,7 @@ export const Earth = ({
           in={!loaded && loaderVisible}
           timeout={msToNum(tokens.base.durationL)}
         >
-          {visible => (
+          {(visible) => (
             <Section className={styles.loader} data-visible={visible}>
               <Loader />
             </Section>
@@ -698,7 +743,7 @@ export const EarthSection = memo(
     camera = [0, 0, 0],
     animations = [],
     meshes = [],
-    labels = [],
+    labels = []
   }) => {
     const { registerSection, unregisterSection } = useContext(EarthContext);
     const sectionRef = useRef();
@@ -714,7 +759,7 @@ export const EarthSection = memo(
         animations,
         meshes,
         labels,
-        sectionRef,
+        sectionRef
       };
 
       registerSection(section);
@@ -737,3 +782,4 @@ export const EarthSection = memo(
     );
   }
 );
+EarthSection.displayName = 'EarthSection';
