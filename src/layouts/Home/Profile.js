@@ -17,20 +17,28 @@ import styles from './Profile.module.css';
 
 const ProfileText = ({ visible, titleId }) => (
   <Fragment>
-    <Heading className={styles.title} data-visible={visible} level={3} id={titleId}>
-      <DecoderText text="Hi there" start={visible} delay={500} />
+    <Heading
+      className={styles.title}
+      data-visible={visible}
+      level={3}
+      id={titleId}
+    >
+      <DecoderText text='Hi there' start={visible} delay={500} />
     </Heading>
-    <Text className={styles.description} data-visible={visible} size="l" as="p">
-      I’m Hamish, currently I live in Sydney working as a senior product designer at{' '}
-      <Link href="https://www.qwilr.com">Qwilr</Link>. My projects include UX design, UI
-      animations, and icon illustration. Being comfortable with code allows me to rapidly
-      prototype and validate experiences. If you’re interested in the tools and software I
-      use check out my <Link href="/uses">uses page</Link>.
+    <Text className={styles.description} data-visible={visible} size='l' as='p'>
+      I’m Mateen, currently I live in Austin, TX working as Senior Software
+      developer at <Link href='https://www.fxnetworks.com'>FX</Link>. I
+      specialize in crafting exceptional user experiences through innovative
+      front-end solutions. Currently, I’m expanding my skills in AI and working
+      towards Google’s TensorFlow Developer Certification.s. If you’re
+      interested in the tools and software I use check out my{' '}
+      <Link href='/uses'>uses page</Link>.
     </Text>
-    <Text className={styles.description} data-visible={visible} size="l" as="p">
-      In my spare time I like to practice Brazilian Jiu Jitsu, play video games, and{' '}
-      <Link href="/projects/volkihar-knight">make mods</Link>. I’m always down for hearing
-      about new projects, so feel free to drop me a line.
+    <Text className={styles.description} data-visible={visible} size='l' as='p'>
+      Outside of work, I enjoy growing mushrooms, exploring Austins food scene,
+      and hitting nature trails with my quirky wiener dog. My love for
+      technology, nature, and personal growth reflects my well-rounded and
+      curious nature.
     </Text>
   </Fragment>
 );
@@ -44,14 +52,14 @@ export const Profile = ({ id, visible, sectionRef }) => {
       className={styles.profile}
       onFocus={() => setFocused(true)}
       onBlur={() => setFocused(false)}
-      as="section"
+      as='section'
       id={id}
       ref={sectionRef}
       aria-labelledby={titleId}
       tabIndex={-1}
     >
       <Transition in={visible || focused} timeout={0}>
-        {visible => (
+        {(visible) => (
           <div className={styles.content}>
             <div className={styles.column}>
               <ProfileText visible={visible} titleId={titleId} />
@@ -59,8 +67,8 @@ export const Profile = ({ id, visible, sectionRef }) => {
                 secondary
                 className={styles.button}
                 data-visible={visible}
-                href="/contact"
-                icon="send"
+                href='/contact'
+                icon='send'
               >
                 Send me a message
               </Button>
@@ -68,8 +76,8 @@ export const Profile = ({ id, visible, sectionRef }) => {
             <div className={styles.column}>
               <div className={styles.tag} aria-hidden>
                 <Divider
-                  notchWidth="64px"
-                  notchHeight="8px"
+                  notchWidth='64px'
+                  notchHeight='8px'
                   collapsed={!visible}
                   collapseDelay={1000}
                 />
@@ -84,13 +92,13 @@ export const Profile = ({ id, visible, sectionRef }) => {
                   placeholder={profileImgPlaceholder}
                   srcSet={[profileImg, profileImgLarge]}
                   sizes={`(max-width: ${media.mobile}px) 100vw, 480px`}
-                  alt="Me standing in front of the Torii on Miyajima, an island off the coast of Hiroshima in Japan"
+                  alt='Me standing in front of the Torii on Miyajima, an island off the coast of Hiroshima in Japan'
                 />
                 <svg
-                  aria-hidden="true"
-                  width="135"
-                  height="765"
-                  viewBox="0 0 135 765"
+                  aria-hidden='true'
+                  width='135'
+                  height='765'
+                  viewBox='0 0 135 765'
                   className={styles.svg}
                   data-visible={visible}
                 >

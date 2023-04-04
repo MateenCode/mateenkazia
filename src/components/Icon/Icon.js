@@ -10,6 +10,7 @@ import Error from './svg/error.svg';
 import Figma from './svg/figma.svg';
 import Github from './svg/github.svg';
 import Link from './svg/link.svg';
+import LinkedIn from './svg/linkedIn.svg';
 import Menu from './svg/menu.svg';
 import Pause from './svg/pause.svg';
 import Play from './svg/play.svg';
@@ -27,17 +28,22 @@ export const icons = {
   figma: Figma,
   github: Github,
   link: Link,
+  linkedIn: LinkedIn,
   menu: Menu,
   pause: Pause,
   play: Play,
   send: Send,
-  twitter: Twitter,
+  twitter: Twitter
 };
 
 export const Icon = ({ icon, className, ...rest }) => {
   const IconComponent = icons[icon];
 
   return (
-    <IconComponent aria-hidden className={classes(styles.icon, className)} {...rest} />
+    <IconComponent
+      aria-hidden
+      className={classes(styles.icon, className)}
+      {...rest}
+    />
   );
 };
