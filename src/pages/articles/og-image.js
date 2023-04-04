@@ -1,4 +1,3 @@
-const puppeteer = require('puppeteer');
 const path = require('path');
 const fs = require('fs');
 const { createHash } = require('crypto');
@@ -31,12 +30,12 @@ export async function generateOgImage(props) {
 
   // Replace 'YOUR_API_KEY' with your Browserless API key
   const browser = process.env.AWS_EXECUTION_ENV
-    ? await puppeteer.launch({
+    ? await chromium.puppeteer.launch({
         args: chromium.args,
         executablePath: await chromium.executablePath,
         headless: chromium.headless
       })
-    : await puppeteer.launch({ headless: true });
+    : await chromium.puppeteer.launch({ headless: true });
 
   const page = await browser.newPage();
   await page.setViewport({ width: 1200, height: 630 });
