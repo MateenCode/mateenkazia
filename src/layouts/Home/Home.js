@@ -18,7 +18,13 @@ import { ProjectSummary } from 'layouts/Home/ProjectSummary';
 import { useEffect, useRef, useState } from 'react';
 import styles from './Home.module.css';
 
-const disciplines = ['AI Prompter', 'Prototyper', 'Animator', 'Illustrator', 'Modder'];
+const disciplines = [
+  'AI Prompter',
+  'Prototyper',
+  'Animator',
+  'Illustrator',
+  'Modder'
+];
 
 export const Home = () => {
   const [visibleSections, setVisibleSections] = useState([]);
@@ -34,12 +40,12 @@ export const Home = () => {
 
     const sectionObserver = new IntersectionObserver(
       (entries, observer) => {
-        entries.forEach(entry => {
+        entries.forEach((entry) => {
           if (entry.isIntersecting) {
             const section = entry.target;
             observer.unobserve(section);
             if (visibleSections.includes(section)) return;
-            setVisibleSections(prevSections => [...prevSections, section]);
+            setVisibleSections((prevSections) => [...prevSections, section]);
           }
         });
       },
@@ -53,7 +59,7 @@ export const Home = () => {
       { rootMargin: '-100% 0px 0px 0px' }
     );
 
-    sections.forEach(section => {
+    sections.forEach((section) => {
       sectionObserver.observe(section.current);
     });
 
@@ -68,85 +74,85 @@ export const Home = () => {
   return (
     <div className={styles.home}>
       <Meta
-        title="Senior Developer"
-        description="Design portfolio of Mateen Kazia — a product designer working on web & mobile
-          apps with a focus on motion, experience design, and accessibility."
+        title='Senior Developer'
+        description='Design portfolio of Mateen Kazia — a product designer working on web & mobile
+          apps with a focus on motion, experience design, and accessibility.'
       />
       <Intro
-        id="intro"
+        id='intro'
         sectionRef={intro}
         disciplines={disciplines}
         scrollIndicatorHidden={scrollIndicatorHidden}
       />
       <ProjectSummary
-        id="project-1"
+        id='project-1'
         sectionRef={projectOne}
         visible={visibleSections.includes(projectOne.current)}
         index={1}
-        title="Designing the future of education"
-        description="Designing a platform to help educators build better online courseware"
-        buttonText="View project"
-        buttonLink="/projects/smart-sparrow"
+        title='Develop FX`s networks'
+        description='Designing a platform to help educators build better online courseware'
+        buttonText='View project'
+        buttonLink='/projects/smart-sparrow'
         model={{
           type: 'laptop',
           alt: 'Smart Sparrow lesson builder',
           textures: [
             {
               srcSet: [sprTexture, sprTextureLarge],
-              placeholder: sprTexturePlaceholder,
-            },
-          ],
+              placeholder: sprTexturePlaceholder
+            }
+          ]
         }}
       />
       <ProjectSummary
-        id="project-2"
+        id='project-2'
         alternate
         sectionRef={projectTwo}
         visible={visibleSections.includes(projectTwo.current)}
         index={2}
-        title="Video game progress tracking"
-        description="Design and development for a video game tracking app built in React Native"
-        buttonText="View website"
-        buttonLink="https://gamestack.hamishw.com"
+        title='Video game progress tracking'
+        description='Design and development for a video game tracking app built in React Native'
+        buttonText='View website'
+        buttonLink='https://gamestack.hamishw.com'
         model={{
           type: 'phone',
           alt: 'App login screen',
           textures: [
             {
               srcSet: [gamestackTexture, gamestackTextureLarge],
-              placeholder: gamestackTexturePlaceholder,
+              placeholder: gamestackTexturePlaceholder
             },
             {
               srcSet: [gamestackTexture2, gamestackTexture2Large],
-              placeholder: gamestackTexture2Placeholder,
-            },
-          ],
+              placeholder: gamestackTexture2Placeholder
+            }
+          ]
         }}
       />
       <ProjectSummary
-        id="project-3"
+        id='project-3'
         sectionRef={projectThree}
         visible={visibleSections.includes(projectThree.current)}
         index={3}
-        title="Biomedical image collaboration"
-        description="Increasing the amount of collaboration in Slice, an app for biomedical imaging"
-        buttonText="View project"
-        buttonLink="/projects/slice"
+        title='Biomedical image collaboration'
+        description='Increasing the amount of collaboration in Slice, an app for biomedical imaging'
+        buttonText='View project'
+        buttonLink='/projects/slice'
         model={{
           type: 'laptop',
           alt: 'Annotating a biomedical image in the Slice app',
           textures: [
             {
               srcSet: [sliceTexture, sliceTextureLarge],
-              placeholder: sliceTexturePlaceholder,
-            },
-          ],
+              placeholder: sliceTexturePlaceholder
+            }
+          ]
         }}
       />
       <Profile
         sectionRef={details}
         visible={visibleSections.includes(details.current)}
-        id="details"
+        id='details'
       />
       <Footer />
     </div>
