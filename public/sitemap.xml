@@ -1,38 +1,38 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>mateenkazia-5xilv7hkb-mateencode.vercel.app/</loc>
+    <loc>https://mateenkazia-5xilv7hkb-mateencode.vercel.app/</loc>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>mateenkazia-5xilv7hkb-mateencode.vercel.app/articles/</loc>
+    <loc>https://mateenkazia-5xilv7hkb-mateencode.vercel.app/articles/</loc>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>mateenkazia-5xilv7hkb-mateencode.vercel.app/contact/</loc>
+    <loc>https://mateenkazia-5xilv7hkb-mateencode.vercel.app/contact/</loc>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>mateenkazia-5xilv7hkb-mateencode.vercel.app/uses/</loc>
+    <loc>https://mateenkazia-5xilv7hkb-mateencode.vercel.app/uses/</loc>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>mateenkazia-5xilv7hkb-mateencode.vercel.app/projects/smart-sparrow/</loc>
+    <loc>https://mateenkazia-5xilv7hkb-mateencode.vercel.app/projects/slice/</loc>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>mateenkazia-5xilv7hkb-mateencode.vercel.app/projects/slice/</loc>
+    <loc>https://mateenkazia-5xilv7hkb-mateencode.vercel.app/projects/smart-sparrow/</loc>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>mateenkazia-5xilv7hkb-mateencode.vercel.app/projects/volkihar-knight/</loc>
+    <loc>https://mateenkazia-5xilv7hkb-mateencode.vercel.app/projects/volkihar-knight/</loc>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>mateenkazia-5xilv7hkb-mateencode.vercel.app/articles/hello-world</loc>
+    <loc>https://mateenkazia-5xilv7hkb-mateencode.vercel.app/articles/hello-world</loc>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>mateenkazia-5xilv7hkb-mateencode.vercel.app/articles/modern-styling-in-react</loc>
+    <loc>https://mateenkazia-5xilv7hkb-mateencode.vercel.app/articles/modern-styling-in-react</loc>
     <changefreq>monthly</changefreq>
   </url>
 </urlset>

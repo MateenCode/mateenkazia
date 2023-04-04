@@ -1,12 +1,20 @@
-const puppeteer = require('puppeteer-core');
+const puppeteer = require('puppeteer');
 const path = require('path');
 const fs = require('fs');
 const { createHash } = require('crypto');
+import chromium from 'chrome-aws-lambda';
 
 export async function generateOgImage(props) {
   const params = new URLSearchParams(props);
-  const url = `${process.env.NEXT_PUBLIC_WEBSITE_URL}/og-image?${params}`;
-  console.log('URL:', url);
+  const url = `file://${path.join(
+    process.cwd(),
+    `src/pages/articles/og-image.html?${params}`
+  )}`;
+
+  const websiteUrl =
+    process.env.NEXT_PUBLIC_WEBSITE_URL || 'http://localhost:3000';
+  const absoluteUrl = `${websiteUrl}/og-image?${params}`;
+  console.log('absoluteUrl:', absoluteUrl);
 
   const hash = createHash('md5').update(url).digest('hex');
   const ogImageDir = path.join(process.cwd(), `public/og`);
@@ -22,14 +30,17 @@ export async function generateOgImage(props) {
   }
 
   // Replace 'YOUR_API_KEY' with your Browserless API key
-  const browser = await puppeteer.connect({
-    browserWSEndpoint: `wss://chrome.browserless.io?token=${process.env.NEXT_BROWSERLESS_API_KEY}`
-  });
-  console.log('URL:', url);
+  const browser = process.env.AWS_EXECUTION_ENV
+    ? await puppeteer.launch({
+        args: chromium.args,
+        executablePath: await chromium.executablePath,
+        headless: chromium.headless
+      })
+    : await puppeteer.launch({ headless: true });
 
   const page = await browser.newPage();
   await page.setViewport({ width: 1200, height: 630 });
-  await page.goto(url, { waitUntil: 'networkidle0' });
+  await page.goto(absoluteUrl, { waitUntil: 'networkidle0' });
   const buffer = await page.screenshot();
   await browser.close();
 
