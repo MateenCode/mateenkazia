@@ -1,4 +1,4 @@
-const puppeteer = require('puppeteer');
+const puppeteer = require('puppeteer-core');
 const path = require('path');
 const fs = require('fs');
 const { createHash } = require('crypto');
@@ -23,7 +23,11 @@ export async function generateOgImage(props) {
     // file does not exists, so we create it
   }
 
-  const browser = await puppeteer.launch({ headless: true });
+  // Replace 'YOUR_API_KEY' with your Browserless API key
+  const browser = await puppeteer.connect({
+    browserWSEndpoint: `wss://chrome.browserless.io?token=f0c6ea2d-22f2-45ce-8ef4-4d56c6551eaf`
+  });
+
   const page = await browser.newPage();
   await page.setViewport({ width: 1200, height: 630 });
   await page.goto(url, { waitUntil: 'networkidle0' });
