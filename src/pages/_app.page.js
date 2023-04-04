@@ -45,20 +45,20 @@ const App = ({ Component, pageProps }) => {
           <Fragment>
             <Head>
               <link
-                rel="canonical"
+                rel='canonical'
                 href={`${process.env.NEXT_PUBLIC_WEBSITE_URL}${canonicalRoute}`}
               />
             </Head>
             <VisuallyHidden
               showOnFocus
-              as="a"
+              as='a'
               className={styles.skip}
-              href="#MainContent"
+              href='#MainContent'
             >
               Skip to main content
             </VisuallyHidden>
             <Navbar />
-            <main className={styles.app} tabIndex={-1} id="MainContent">
+            <main className={styles.app} tabIndex={-1} id='MainContent'>
               <AnimatePresence exitBeforeEnter>
                 <m.div
                   key={route}
@@ -70,7 +70,7 @@ const App = ({ Component, pageProps }) => {
                     type: 'tween',
                     ease: 'linear',
                     duration: msToNum(tokens.base.durationS) / 1000,
-                    delay: 0.1,
+                    delay: 0.1
                   }}
                 >
                   <ScrollRestore />
