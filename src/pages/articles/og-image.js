@@ -5,10 +5,7 @@ const { createHash } = require('crypto');
 
 export async function generateOgImage(props) {
   const params = new URLSearchParams(props);
-  const url = `file:${path.join(
-    process.cwd(),
-    `src/pages/articles/og-image.html?${params}`
-  )}`;
+  const url = `${process.env.NEXT_PUBLIC_WEBSITE_URL}/og-image?${params}`;
 
   const hash = createHash('md5').update(url).digest('hex');
   const ogImageDir = path.join(process.cwd(), `public/og`);
@@ -25,7 +22,7 @@ export async function generateOgImage(props) {
 
   // Replace 'YOUR_API_KEY' with your Browserless API key
   const browser = await puppeteer.connect({
-    browserWSEndpoint: `wss://chrome.browserless.io?token=f0c6ea2d-22f2-45ce-8ef4-4d56c6551eaf`
+    browserWSEndpoint: `wss://chrome.browserless.io?token=${process.env.NEXT_BROWSERLESS_API_KEY}`
   });
 
   const page = await browser.newPage();
