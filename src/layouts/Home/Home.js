@@ -89,7 +89,7 @@ export const Home = () => {
         sectionRef={projectOne}
         visible={visibleSections.includes(projectOne.current)}
         index={1}
-        title='Develop FX`s networks'
+        title='FX networks'
         description='Designing a platform to help educators build better online courseware'
         buttonText='View project'
         buttonLink='/projects/smart-sparrow'
