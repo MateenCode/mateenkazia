@@ -7,9 +7,9 @@ import gamestackTexture from 'assets/gamestack-login.jpg';
 import sliceTextureLarge from 'assets/slice-app-large.jpg';
 import sliceTexturePlaceholder from 'assets/slice-app-placeholder.jpg';
 import sliceTexture from 'assets/slice-app.jpg';
-import sprTextureLarge from 'assets/spr-lesson-builder-dark-large.jpg';
-import sprTexturePlaceholder from 'assets/spr-lesson-builder-dark-placeholder.jpg';
-import sprTexture from 'assets/spr-lesson-builder-dark.jpg';
+import FXTextureLarge from 'assets/fx-dark-large.png';
+import FXTexturePlaceholder from 'assets/fx-dark-large.png';
+import FXTexture from 'assets/fx-dark-large.png';
 import { Footer } from 'components/Footer';
 import { Meta } from 'components/Meta';
 import { Intro } from 'layouts/Home/Intro';
@@ -89,17 +89,18 @@ export const Home = () => {
         sectionRef={projectOne}
         visible={visibleSections.includes(projectOne.current)}
         index={1}
-        title='FX networks'
-        description='Designing a platform to help educators build better online courseware'
+        title='FX Networks'
+        description='Developed a complete redesign of the
+        FXNetwork with successful launch'
         buttonText='View project'
-        buttonLink='/projects/smart-sparrow'
+        buttonLink='https://www.fxnetworks.com/'
         model={{
           type: 'laptop',
-          alt: 'Smart Sparrow lesson builder',
+          alt: 'FXnetworks',
           textures: [
             {
-              srcSet: [sprTexture, sprTextureLarge],
-              placeholder: sprTexturePlaceholder
+              srcSet: [FXTexture, FXTextureLarge],
+              placeholder: FXTexturePlaceholder
             }
           ]
         }}
